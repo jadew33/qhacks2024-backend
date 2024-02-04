@@ -12,6 +12,11 @@ const classesSchema = new mongoose.Schema({
   time: [timesSchema],
 });
 
+const friendsSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String,
+});
+
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -29,10 +34,10 @@ const UserSchema = new mongoose.Schema({
     type: [String],
     required: false,
   },
-});
-
-UserSchema.add({
-  friends: [UserSchema],
+  friends: {
+    type: [friendsSchema],
+    required: false,
+  },
 });
 
 const UserModel = mongoose.model("User", UserSchema, "Users");
