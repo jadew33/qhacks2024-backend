@@ -1,5 +1,17 @@
 const mongoose = require("mongoose");
 
+const timesSchema = new mongoose.Schema({
+  weekDay: String,
+  startTime: String,
+  endTime: Number,
+});
+
+const classesSchema = new mongoose.Schema({
+  courseName: String,
+  location: String,
+  time: [timesSchema],
+});
+
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -10,7 +22,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   classes: {
-    type: [String],
+    type: [classesSchema],
     required: false,
   },
   closet: {

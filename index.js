@@ -9,10 +9,7 @@ const port = 5000;
 https: main().catch((err) => console.log(err));
 
 async function main() {
-  //   await mongoose.connect(process.env.MONGODB_URI);
-  await mongoose.connect(
-    "mongodb+srv://jade:jade@cluster0.duooof8.mongodb.net/Qhacks?retryWrites=true&w=majority"
-  );
+  await mongoose.connect(process.env.MONGODB_URI);
   console.log("Connected to Mongo");
 }
 
