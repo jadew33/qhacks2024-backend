@@ -26,7 +26,7 @@ app.get("/", async (req, res) => {
 
 const UserModel = require("./Models/UserModel");
 
-app.get("/user", async (req, res) => {
+app.post("/user", async (req, res) => {
   try {
     const email = req.body.email;
     const user = await UserModel.findOne({ email: email });
@@ -40,7 +40,7 @@ app.get("/user", async (req, res) => {
   }
 });
 
-app.get("/user/classes", async (req, res) => {
+app.post("/user/classes", async (req, res) => {
   try {
     const email = req.body.email;
     const user = await UserModel.findOne({ email: email }, "classes");
@@ -54,7 +54,7 @@ app.get("/user/classes", async (req, res) => {
   }
 });
 
-app.get("/user/closet", async (req, res) => {
+app.post("/user/closet", async (req, res) => {
   try {
     const email = req.body.email;
     const user = await UserModel.findOne({ email: email }, "closet");
@@ -68,7 +68,7 @@ app.get("/user/closet", async (req, res) => {
   }
 });
 
-app.get("/user/friends", async (req, res) => {
+app.post("/user/friends", async (req, res) => {
   try {
     const email = req.body.email;
     const user = await UserModel.findOne({ email: email }, "friends");
@@ -140,10 +140,10 @@ let lastDayIndex = weekdays.indexOf(
 );
 let lastDayPercent = dataset[dataset.length - 1].percent;
 
-// Gets the likelihood for the user to attend class on a given weekday
+// posts the likelihood for the user to attend class on a given weekday
 // based on prior attendance data. For now, the attendance data is hardcoded in
 // as we do not have a real user's data to work with.
-app.get("/user/prediction", async (req, res) => {
+app.post("/user/prediction", async (req, res) => {
   try {
     const email = req.body.email;
     const user = await UserModel.findOne({ email: email });
